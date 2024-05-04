@@ -155,11 +155,13 @@ static int handle_rdtsc_interception(struct kvm_vcpu *vcpu)
 	vcpu->arch.regs[VCPU_REGS_RAX] = rdtsc_fake & -1u;
     	vcpu->arch.regs[VCPU_REGS_RDX] = (rdtsc_fake >> 32) & -1u;
 
-    	return skip_emulated_instruction(vcpu);
+    	return svm_skip_emulated_instruction(vcpu);
 }
 ```
 
 # Kernel building
+* For ArchLinux follow arch wiki: https://wiki.archlinux.org/title/Kernel/Traditional_compilation
+  
 * Clone the kernel from [official](https://github.com/torvalds/linux) repository or from repository of your os.
 * Make changes for your cpu
 * Install the requirements for kernel building
